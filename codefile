@@ -1,0 +1,84 @@
+def grouped():
+    squared = []
+    total1 = []
+    total2 = []
+    mid1 = []
+    frequency1 = []
+
+    b = int(input("Please enter the number of midpoints: "))
+    for i in range(0, b):
+        c = float(input("Please enter your mid-value: "))
+        mid1.append(c)
+    d = int(input("Please enter the number of frequncies: "))
+    if d != b:
+        print(" Error! The number of frequencies doesn't match the number of midpoints")
+        quit()
+    for j in range(0, d):
+        e = float(input("Please enter your frequency: "))
+        frequency1.append(e)
+    for num1, num2 in zip(mid1, frequency1):
+        total1.append(num1*num2)
+
+        mean1 = sum(total1) / sum(frequency1)
+        print("This is your mean:", mean1)
+
+        for f in mid1:
+            squared.append(f**2)
+
+        for num1, num2, in zip(squared, frequency1):
+            total2.append(num1*num2)
+
+        s = sum(total2) / sum(frequency1) - (mean1*mean1)
+        print("This is your variance: ", s)
+        z = s**0.5
+        print("This is your standard deviation: ", z)
+
+        j = input("Would you like your values to be rounded? Answer with yes or no: ")
+        if j == "yes":
+            q = int(input("By how many signficant figures: "))
+            print("This is your rounded mean: ", round(mean1, q-1))
+            print("This is your rounded variance: ", round(s, q-1))
+            print("This is your rounded standard deviation: ", round(z, q-1))
+            quit()
+        else:
+            quit()
+
+
+def ungrouped():
+    values = []
+    squared = []
+
+    a = int(input("Please enter the number of values you have: "))
+    for b in range(0, a):
+        z = float(input("Please enter a number: "))
+        values.append(z)
+    
+    mean = sum(values) / a
+    print("This is your mean: ", mean)
+
+    for f in values:
+        squared.append(f**2)
+
+    sum2 = sum(squared) / a
+    variance = sum2 - (mean)**2
+    print("This is your variance: ", variance)
+
+    standard_deviation = variance**0.5
+    print("This is your standard deviation: ", standard_deviation)
+
+    j = input("Would you like your values to be rounded? Answer with yes or no: ")
+    if j == "yes":
+        q = int(input("By how many signficant figures: "))
+        print("This is your rounded mean: ", round(mean, q-1))
+        print("This is your rounded variance: ", round(variance, q-1))
+        print("This is your rounded standard deviation: ", round(standard_deviation, q-1))
+
+
+def decision():
+    z = input("Do you have grouped or ungrouped data? [ grouped / ungrouped ]: ")
+    if z == "grouped":
+        grouped()
+    if z == "ungrouped":
+        ungrouped()
+
+decision()
